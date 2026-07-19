@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  
+  --color-background: var(--background);
+  --color-on-background: var(--on-background);
+
+  --font-anton: var(--font-anton);
+  --font-inter: var(--font-inter);
+
+  /* Strict No Radius Requirement */
+  --radius-sm: 0rem;
+  --radius-md: 0rem;
+  --radius-lg: 0rem;
+  --radius-xl: 0rem;
+  --radius-2xl: 0rem;
+  --radius-3xl: 0rem;
+  --radius-full: 0rem;
+
+  /* Custom Animations */
+  --animate-marquee: marquee 20s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  :root {
+    --surface: #f9f9f9;
+    --surface-dim: #dadada;
+    --surface-container-lowest: #ffffff;
+    --surface-container-low: #f3f3f3;
+    --surface-container: #eeeeee;
+    --on-surface: #1a1c1c;
+    --on-surface-variant: #4c4546;
+    
+    --primary: #000000;
+    --on-primary: #ffffff;
+    --primary-container: #1b1b1b;
+    
+    --background: #f9f9f9;
+    --on-background: #1a1c1c;
+  }
+
+  .dark {
+    --surface: #121212;
+    --surface-dim: #1e1e1e;
+    --surface-container-lowest: #0a0a0a;
+    --surface-container-low: #181818;
+    --surface-container: #242424;
+    --on-surface: #ededed;
+    --on-surface-variant: #a3a3a3;
+    
+    --primary: #ededed;
+    --on-primary: #121212;
+    --primary-container: #2a2a2a;
+    
+    --background: #121212;
+    --on-background: #ededed;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-inter);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-anton);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+}
