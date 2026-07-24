@@ -128,7 +128,7 @@ export default function CheckoutPage() {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-surface">
                 <h1 className="font-anton text-3xl uppercase tracking-widest mb-4">Keranjang Kosong</h1>
-                <Button variant="outline" onClick={() => router.push('/lookbook')} className="py-6 px-8 text-lg border-2">
+                <Button variant="secondary" onClick={() => router.push('/lookbook')} className="px-12 py-4">
                     KEMBALI BELANJA
                 </Button>
             </div>
@@ -154,7 +154,7 @@ export default function CheckoutPage() {
                         {addresses.length === 0 ? (
                             <div className="text-center py-6">
                                 <p className="mb-4 text-sm font-bold uppercase">Belum ada alamat tersimpan.</p>
-                                <Button variant="outline" onClick={() => router.push('/address')}>Tambah Alamat</Button>
+                                <Button variant="secondary" onClick={() => router.push('/address')}>Tambah Alamat</Button>
                             </div>
                         ) : (
                             <div className="space-y-4">

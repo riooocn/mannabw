@@ -70,7 +70,7 @@ export function QuickViewModal({ productSlug, onClose }: QuickViewModalProps) {
           <div className="flex flex-col items-center justify-center p-12 text-center">
             <p className="font-anton uppercase tracking-widest text-xl mb-2 text-red-600">Error</p>
             <p className="font-inter text-sm mb-6">Failed to load product details.</p>
-            <Button variant="outline" onClick={onClose}>Close</Button>
+            <Button variant="secondary" onClick={onClose}>Close</Button>
           </div>
         )}
 
@@ -173,7 +173,7 @@ export function QuickViewModal({ productSlug, onClose }: QuickViewModalProps) {
                   ADD TO CART
                 </Button>
                 <Link href={`/products/${product.slug}`} className="w-full">
-                  <Button variant="outline" className="w-full py-6 text-lg border-2">
+                  <Button variant="secondary" className="w-full py-6 text-lg border-2">
                     VIEW FULL DETAILS
                   </Button>
                 </Link>
