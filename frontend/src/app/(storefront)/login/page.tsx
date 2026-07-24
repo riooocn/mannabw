@@ -3,10 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { fetchApi, getCsrfToken, API_URL } from '@/lib/api';
+import { fetchApi, API_URL } from '@/lib/api';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function LoginPage() {
   const router = useRouter();
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -18,13 +20,12 @@ export default function LoginPage() {
     setError('');
 
     try {
-      await getCsrfToken();
-      await fetchApi('/login', {
+      const data = await fetchApi('/api/login', {
         method: 'POST',
         body: JSON.stringify({ email, password }),
       });
+      login(data.access_token, data.user);
       router.push('/');
-      router.refresh();
     } catch (err: any) {
       setError(err.data?.message || 'Login failed. Please check your credentials.');
     } finally {
@@ -33,10 +34,10 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white p-4">
-      <div className="w-full max-w-md border border-black p-8 bg-white">
+    <div className="min-h-screen flex items-center justify-center bg-surface p-4">
+      <div className="w-full max-w-md border border-primary p-8 bg-surface-container">
         <h1 className="text-4xl font-anton uppercase mb-2">Login</h1>
-        <p className="text-sm mb-8 text-black/70">Welcome back to Manna Blessingwear.</p>
+        <p className="text-sm mb-8 text-on-surface-variant">Welcome back to Manna Blessingwear.</p>
 
         {error && (
           <div className="bg-red-500 text-white p-3 mb-6 text-sm font-semibold">
@@ -54,7 +55,7 @@ export default function LoginPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-black p-3 rounded-none focus:outline-none focus:ring-2 focus:ring-black"
+              className="w-full border border-primary p-3 rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-surface"
               required
             />
           </div>
@@ -68,7 +69,7 @@ export default function LoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border border-black p-3 rounded-none focus:outline-none focus:ring-2 focus:ring-black"
+              className="w-full border border-primary p-3 rounded-none focus:outline-none focus:ring-2 focus:ring-primary bg-surface"
               required
             />
           </div>
@@ -76,7 +77,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-black text-white p-4 uppercase font-bold tracking-widest hover:bg-black/90 transition-colors disabled:opacity-50"
+            className="w-full bg-primary text-on-primary p-4 uppercase font-bold tracking-widest hover:bg-primary/90 transition-colors disabled:opacity-50"
           >
             {isLoading ? 'Signing In...' : 'Sign In'}
           </button>
@@ -84,16 +85,16 @@ export default function LoginPage() {
 
         <div className="my-8 relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-black"></div>
+            <div className="w-full border-t border-primary"></div>
           </div>
           <div className="relative flex justify-center text-xs uppercase font-bold tracking-widest">
-            <span className="bg-white px-2">Or</span>
+            <span className="bg-surface-container px-2">Or</span>
           </div>
         </div>
 
         <a
           href={`${API_URL}/auth/google`}
-          className="w-full flex items-center justify-center border border-black p-4 uppercase font-bold tracking-widest hover:bg-black/5 transition-colors"
+          className="w-full flex items-center justify-center border border-primary p-4 uppercase font-bold tracking-widest hover:bg-primary/5 transition-colors"
         >
           <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
             <path

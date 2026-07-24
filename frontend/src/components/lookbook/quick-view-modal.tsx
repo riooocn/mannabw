@@ -6,7 +6,8 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { fetchApi } from '@/lib/api';
 import Link from 'next/link';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Minus, Plus } from 'lucide-react';
+import { useCart } from '@/contexts/CartContext';
 
 interface QuickViewModalProps {
   productSlug: string | null;
@@ -17,6 +18,9 @@ export function QuickViewModal({ productSlug, onClose }: QuickViewModalProps) {
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [selectedVariantId, setSelectedVariantId] = useState<number | null>(null);
+  const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     if (!productSlug) return;
@@ -29,6 +33,9 @@ export function QuickViewModal({ productSlug, onClose }: QuickViewModalProps) {
       .then((data) => {
         if (isMounted) {
           setProduct(data);
+          if (data.variants && data.variants.length > 0) {
+              setSelectedVariantId(data.variants[0].id);
+          }
           setLoading(false);
         }
       })
@@ -105,10 +112,69 @@ export function QuickViewModal({ productSlug, onClose }: QuickViewModalProps) {
                 )}
               </div>
 
+              {/* Variants / Sizes */}
+              {product.variants && product.variants.length > 0 && (
+                <div className="mb-6">
+                  <p className="font-bold text-xs uppercase tracking-widest mb-2">Pilih Ukuran</p>
+                  <div className="flex gap-2">
+                    {product.variants.map((v: any) => (
+                      <button
+                        key={v.id}
+                        onClick={() => setSelectedVariantId(v.id)}
+                        className={`w-12 h-12 flex items-center justify-center border font-bold uppercase transition-colors ${
+                          selectedVariantId === v.id 
+                            ? 'border-primary bg-primary text-on-primary' 
+                            : 'border-primary/20 text-primary hover:border-primary'
+                        }`}
+                      >
+                        {v.size}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Quantity */}
+              <div className="mb-8">
+                <p className="font-bold text-xs uppercase tracking-widest mb-2">Jumlah</p>
+                <div className="flex items-center border border-primary w-fit">
+                    <button 
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                        disabled={quantity <= 1}
+                        className="w-12 h-12 flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-primary"
+                    >
+                        <Minus className="w-4 h-4" />
+                    </button>
+                    <span className="w-12 text-center text-sm font-bold text-on-surface">
+                        {quantity}
+                    </span>
+                    <button 
+                        onClick={() => setQuantity(quantity + 1)}
+                        className="w-12 h-12 flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors"
+                    >
+                        <Plus className="w-4 h-4" />
+                    </button>
+                </div>
+              </div>
+
               <div className="flex flex-col gap-3 mt-auto">
+                <Button 
+                    variant="primary" 
+                    className="w-full py-6 text-lg"
+                    onClick={() => {
+                        if (selectedVariantId) {
+                            addToCart(selectedVariantId, quantity);
+                            onClose();
+                        } else {
+                            alert('Pilih ukuran terlebih dahulu');
+                        }
+                    }}
+                >
+                  ADD TO CART
+                </Button>
                 <Link href={`/products/${product.slug}`} className="w-full">
-                  <Button variant="primary" className="w-full py-6 text-lg">
-                    View Full Details
+                  <Button variant="outline" className="w-full py-6 text-lg border-2">
+                    VIEW FULL DETAILS
                   </Button>
                 </Link>
               </div>

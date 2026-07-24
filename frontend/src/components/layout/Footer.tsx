@@ -4,8 +4,8 @@ import Link from "next/link";
 export function Footer() {
   return (
     <footer className="w-full border-t border-primary bg-surface py-12 px-4 md:px-16 mt-auto">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
           <Link href="/" className="font-anton text-3xl tracking-widest uppercase">
             MANNABW
           </Link>

@@ -98,6 +98,13 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('name')->searchable(),
                 Tables\Columns\TextColumn::make('type')->badge(),
                 Tables\Columns\TextColumn::make('price')->money('IDR'),
+                Tables\Columns\TextColumn::make('variants_stock')
+                    ->label('Sisa Stok & Ukuran')
+                    ->getStateUsing(function (Product $record) {
+                        return $record->variants->map(function ($variant) {
+                            return "{$variant->size} ({$variant->stock})";
+                        })->implode(', ');
+                    }),
                 Tables\Columns\IconColumn::make('is_published')->boolean(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])

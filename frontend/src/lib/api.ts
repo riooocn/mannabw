@@ -12,10 +12,18 @@ export async function fetchApi(endpoint: string, options: RequestInit = {}) {
     
     headers.set('Accept', 'application/json');
 
+    // Add Authorization header if token exists in localStorage (client-side only)
+    if (typeof window !== 'undefined') {
+        const token = localStorage.getItem('auth_token');
+        if (token) {
+            headers.set('Authorization', `Bearer ${token}`);
+        }
+    }
+
     const config: RequestInit = {
         ...options,
         headers,
-        credentials: 'include', // Important for Sanctum session cookies
+        // credentials: 'omit', // We use Bearer token, so no need for session cookies (avoids CSRF mismatch)
     };
 
     const response = await fetch(`${API_URL}${endpoint}`, config);

@@ -16,10 +16,10 @@ interface LookbookGridProps {
 }
 
 const SIZE_MAP = {
-  small: { span: 'col-span-12 md:col-span-4', height: 'h-[50vh] md:h-[70vh]' },
-  medium: { span: 'col-span-12 md:col-span-6', height: 'h-[60vh] md:h-[80vh]' },
-  large: { span: 'col-span-12 md:col-span-8', height: 'h-[70vh] md:h-[90vh]' },
-  full: { span: 'col-span-12', height: 'h-[80vh] md:h-[100vh]' },
+  small: { span: 'col-span-6 md:col-span-4', height: 'h-[35vh] md:h-[70vh]' },
+  medium: { span: 'col-span-6 md:col-span-6', height: 'h-[40vh] md:h-[80vh]' },
+  large: { span: 'col-span-12 md:col-span-8', height: 'h-[50vh] md:h-[90vh]' },
+  full: { span: 'col-span-12', height: 'h-[60vh] md:h-[100vh]' },
 };
 
 export function LookbookGrid({ images }: LookbookGridProps) {
@@ -35,7 +35,7 @@ export function LookbookGrid({ images }: LookbookGridProps) {
           return (
             <div 
               key={index} 
-              className={`${layout.span} ${layout.height} border-b md:border-r border-primary relative group overflow-hidden bg-black cursor-crosshair`}
+              className={`${layout.span} ${layout.height} border-b border-r border-primary relative group overflow-hidden bg-primary cursor-crosshair`}
               onClick={() => img.product_slug && setSelectedProductSlug(img.product_slug)}
             >
                <div className={`w-full h-full transition-all duration-700 ease-out group-hover:scale-[1.02] ${img.is_grayscale ? 'grayscale group-hover:grayscale-0' : ''}`}>

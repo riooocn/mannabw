@@ -27,14 +27,14 @@ export default function ContactPage() {
           />
         </div>
 
-        <div className="w-full max-w-lg border-t-8 border-foreground pt-8 mt-8">
+        <div className="w-full max-w-lg border-t-8 border-primary pt-8 mt-8">
           <p className="font-anton text-2xl md:text-4xl uppercase mb-8">
             Share The Truth ~
           </p>
 
-          <div className="flex flex-col gap-6 text-left border-4 border-foreground p-8 bg-surface relative">
+          <div className="flex flex-col gap-6 text-left border-4 border-primary p-8 bg-surface relative">
             {/* Red accent badge like "JOHN 3:16" */}
-            <div className="absolute -top-4 -right-4 bg-red-600 text-white font-anton text-xl px-4 py-1 border-2 border-foreground uppercase transform rotate-3">
+            <div className="absolute -top-4 -right-4 bg-red-600 text-white font-anton text-xl px-4 py-1 border-2 border-primary uppercase transform rotate-3">
               CONTACT US
             </div>
 
@@ -45,7 +45,7 @@ export default function ContactPage() {
               </a>
             </div>
 
-            <div className="w-full h-[2px] bg-foreground/20"></div>
+            <div className="w-full h-[2px] bg-primary/20"></div>
 
             <div className="flex flex-col gap-2">
               <span className="font-inter font-bold text-sm text-on-surface-variant uppercase tracking-widest">General Inquiries (Yanu)</span>

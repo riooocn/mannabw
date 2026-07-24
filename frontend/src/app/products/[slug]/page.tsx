@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { AnimatedText } from "@/components/ui/animated-text";
 import { ParallaxImage } from "@/components/ui/parallax-image";
+import { ProductActionButtons } from "@/components/products/ProductActionButtons";
 import Link from "next/link";
 import { API_URL } from "@/lib/api";
 import { notFound } from "next/navigation";
@@ -65,29 +66,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             </div>
           )}
 
-          <div className="flex flex-col gap-4">
-            <h3 className="font-inter text-sm font-bold tracking-widest uppercase">Size</h3>
-            <div className="grid grid-cols-4 gap-4">
-              {product.variants && product.variants.length > 0 ? (
-                product.variants.map((variant: any) => (
-                  <button 
-                    key={variant.id} 
-                    disabled={variant.stock <= 0 && !isPreOrder}
-                    className="h-12 border border-primary hover:bg-primary hover:text-on-primary transition-colors font-anton text-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-foreground rounded-none"
-                  >
-                    {variant.size}
-                  </button>
-                ))
-              ) : (
-                <div className="col-span-4 text-sm text-on-surface-variant">No sizes available</div>
-              )}
-            </div>
-            <button className="text-sm text-on-surface-variant underline underline-offset-4 text-left hover:text-primary mt-2">View Size Chart</button>
-          </div>
-
-          <Button variant="primary" size="lg" className="w-full mt-8 text-xl rounded-none">
-            {isPreOrder ? "PRE-ORDER NOW" : "ADD TO CART"}
-          </Button>
+          <ProductActionButtons product={product} isPreOrder={isPreOrder} />
 
           {/* Details Accordion placeholder */}
           <div className="mt-16 flex flex-col border-t border-primary">

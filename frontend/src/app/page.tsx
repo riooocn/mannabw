@@ -13,11 +13,11 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="px-4 md:px-16 py-16 md:py-32 flex flex-col md:flex-row items-center border-b-4 border-foreground min-h-[90vh] relative z-10">
-        <div className="w-full md:w-1/2 flex flex-col items-start gap-8 z-10">
-          <div className="relative">
+      <section className="px-4 md:px-16 py-12 md:py-32 flex flex-col md:flex-row items-center border-b-4 border-primary min-h-[90vh] relative z-10">
+        <div className="w-full md:w-1/2 flex flex-col items-start z-10">
+          <div className="relative mb-6 md:mb-8">
             {/* Red accent badge */}
-            <div className="absolute -top-6 -left-4 bg-red-600 text-white font-anton text-xl px-4 py-1 border-2 border-foreground uppercase transform -rotate-3 z-20">
+            <div className="absolute -top-6 left-0 md:-left-4 bg-red-600 text-white font-anton text-xl px-4 py-1 border-2 border-primary uppercase transform -rotate-3 z-20">
               DROP #1
             </div>
             <AnimatedText 
@@ -29,32 +29,47 @@ export default function Home() {
           <AnimatedText 
             text="Share The Joy, Share The Truth ~" 
             el="p" 
-            className="text-2xl font-anton uppercase text-on-surface-variant max-w-md" 
+            className="text-xl md:text-2xl font-anton uppercase text-on-surface-variant max-w-md mb-6 md:mb-8" 
           />
-          <p className="font-inter font-medium text-sm uppercase tracking-widest max-w-sm border-l-4 border-foreground pl-4 py-2">
+
+          {/* MOBILE ONLY IMAGE: Interleaved for editorial look, bleeding to edges */}
+          <div className="w-[calc(100%+2rem)] -mx-4 h-[45vh] relative md:hidden mb-8 border-y-4 border-primary bg-primary overflow-hidden">
+            <ParallaxImage 
+              src="logo.jpg" 
+              alt="Hero Image" 
+              className="w-full h-full object-cover"
+              priority 
+            />
+          </div>
+
+          <p className="font-inter font-medium text-xs md:text-sm uppercase tracking-widest max-w-sm border-l-4 border-primary pl-4 py-2 mb-8">
             Dan Engkau memberikan kepada mereka Rohmu yang baik untuk mengajar mereka. Juga manna-Mu tidak Kau tahan dari mulut mereka dan Engkau memberikan air kepada mereka untuk melepaskan dahaga. (Nehemia 9:20)
           </p>
-          <div className="flex gap-4 pt-4">
-            <Link href="/products">
-              <Button variant="primary">Shop Collection</Button>
+          
+          {/* Buttons: Side-by-side on mobile */}
+          <div className="flex flex-row gap-3 w-full md:w-auto">
+            <Link href="/products" className="flex-1 md:flex-none">
+              <Button variant="primary" className="w-full text-xs md:text-sm px-2 md:px-8 py-4 md:py-3">SHOP COLLECTION</Button>
             </Link>
-            <Link href="/lookbook">
-              <Button variant="secondary">View Lookbook</Button>
+            <Link href="/lookbook" className="flex-1 md:flex-none">
+              <Button variant="secondary" className="w-full text-xs md:text-sm px-2 md:px-8 py-4 md:py-3">VIEW LOOKBOOK</Button>
             </Link>
           </div>
         </div>
-        <div className="w-full md:w-1/2 mt-16 md:mt-0 relative h-[60vh] md:h-[80vh] w-full">
+
+        {/* DESKTOP ONLY IMAGE */}
+        <div className="hidden md:block w-full md:w-1/2 relative h-[80vh] mt-16 md:mt-0">
           <ParallaxImage 
             src="logo.jpg" 
             alt="Hero Image" 
-            className="w-full h-full"
+            className="w-full h-full object-cover"
             priority 
           />
         </div>
       </section>
 
       {/* Featured Products Marquee / Banner */}
-      <div className="w-full border-b-4 border-foreground overflow-hidden bg-foreground text-background py-6 whitespace-nowrap flex items-center">
+      <div className="w-full border-b-4 border-primary overflow-hidden bg-primary text-on-primary py-6 whitespace-nowrap flex items-center">
         <div className="animate-[marquee_20s_linear_infinite] flex gap-12 font-anton text-2xl uppercase tracking-widest">
           <span>DROP #1 LIVE NOW</span>
           <span>•</span>

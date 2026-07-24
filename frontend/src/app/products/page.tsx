@@ -27,7 +27,7 @@ export default async function ProductsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full">
+      <div className="grid grid-cols-2 md:grid-cols-4 w-full border-t border-l border-primary">
         {products.map((product: any) => {
           const isPreOrder = product.type === 'pre_order';
           const defaultImage = product.images && product.images.length > 0 
@@ -35,7 +35,7 @@ export default async function ProductsPage() {
             : "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80"; // fallback
 
           return (
-            <Link href={`/products/${product.slug}`} key={product.id} className="group border-b lg:border-b-0 lg:border-r border-primary last:border-r-0 relative block">
+            <Link href={`/products/${product.slug}`} key={product.id} className="group border-b border-r border-primary relative block">
               <Card className="h-full border-none transition-colors group-hover:bg-primary group-hover:text-on-primary rounded-none">
                 <div className="w-full aspect-[3/4] relative overflow-hidden border-b border-primary">
                   {isPreOrder && (
