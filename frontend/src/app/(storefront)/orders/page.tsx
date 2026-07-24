@@ -200,7 +200,7 @@ export default function OrdersPage() {
                                             {order.status === 'pending_payment' && (
                                                 <div className="mt-4 md:mt-0 flex flex-row w-full md:w-auto gap-2">
                                                     <Button 
-                                                        variant="outline" 
+                                                        variant="secondary" 
                                                         className="flex-1 md:w-auto text-red-600 border-red-600 hover:bg-red-50 text-xs md:text-sm px-2 md:px-6"
                                                         onClick={() => handleCancel(order.id)}
                                                     >
