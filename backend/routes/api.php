@@ -38,3 +38,13 @@ Route::get('/products/{slug}', [App\Http\Controllers\Api\ProductController::clas
 Route::get('/lookbook', [App\Http\Controllers\Api\LookbookController::class, 'index']);
 
 Route::get('/shipping/locations', [App\Http\Controllers\Api\ShippingController::class, 'locations']);
+
+// Temporary route to run migrations on shared hosting
+Route::get('/setup-db-migrate', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        return \Illuminate\Support\Facades\Artisan::output();
+    } catch (\Exception $e) {
+        return $e->getMessage();
+    }
+});
