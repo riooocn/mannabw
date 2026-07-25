@@ -42,7 +42,7 @@ Route::get('/shipping/locations', [App\Http\Controllers\Api\ShippingController::
 // Temporary route to run migrations on shared hosting
 Route::get('/setup-db-migrate', function () {
     try {
-        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true]);
         return \Illuminate\Support\Facades\Artisan::output();
     } catch (\Exception $e) {
         return $e->getMessage();
