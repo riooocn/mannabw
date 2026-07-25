@@ -48,3 +48,21 @@ Route::get('/setup-db-migrate', function () {
         return $e->getMessage();
     }
 });
+
+// Temporary route to create admin user on shared hosting
+Route::get('/setup-create-admin', function () {
+    try {
+        if (\App\Models\User::where('email', 'admin@mannabw.com')->exists()) {
+            return 'Admin already exists!';
+        }
+        $user = \App\Models\User::create([
+            'name' => 'Admin',
+            'email' => 'admin@mannabw.com',
+            'password' => \Illuminate\Support\Facades\Hash::make('mannabw2026'),
+            'role' => 'admin',
+        ]);
+        return 'Admin created successfully! Email: admin@mannabw.com | Pass: mannabw2026';
+    } catch (\Exception $e) {
+        return $e->getMessage();
+    }
+});
