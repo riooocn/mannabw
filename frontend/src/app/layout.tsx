@@ -34,7 +34,7 @@ export default function RootLayout({
       <body suppressHydrationWarning className="antialiased min-h-screen flex flex-col pt-16">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
