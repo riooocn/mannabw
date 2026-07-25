@@ -39,30 +39,4 @@ Route::get('/lookbook', [App\Http\Controllers\Api\LookbookController::class, 'in
 
 Route::get('/shipping/locations', [App\Http\Controllers\Api\ShippingController::class, 'locations']);
 
-// Temporary route to run migrations on shared hosting
-Route::get('/setup-db-migrate', function () {
-    try {
-        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true]);
-        return \Illuminate\Support\Facades\Artisan::output();
-    } catch (\Exception $e) {
-        return $e->getMessage();
-    }
-});
-
-// Temporary route to create admin user on shared hosting
-Route::get('/setup-create-admin', function () {
-    try {
-        if (\App\Models\User::where('email', 'admin@mannabw.com')->exists()) {
-            return 'Admin already exists!';
-        }
-        $user = \App\Models\User::create([
-            'name' => 'Admin',
-            'email' => 'admin@mannabw.com',
-            'password' => \Illuminate\Support\Facades\Hash::make('mannabw2026'),
-            'role' => 'admin',
-        ]);
-        return 'Admin created successfully! Email: admin@mannabw.com | Pass: mannabw2026';
-    } catch (\Exception $e) {
-        return $e->getMessage();
-    }
-});
+// (Temporary setup routes removed for security)
