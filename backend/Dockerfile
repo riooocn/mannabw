@@ -6,10 +6,13 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
+    libicu-dev \
+    libzip-dev \
     zip \
     unzip \
     curl \
-    && docker-php-ext-install pdo pdo_pgsql pdo_mysql mbstring exif pcntl bcmath gd
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install pdo pdo_pgsql pdo_mysql mbstring exif pcntl bcmath gd intl zip
 
 # Enable Apache mod_rewrite for Laravel routing
 RUN a2enmod rewrite
