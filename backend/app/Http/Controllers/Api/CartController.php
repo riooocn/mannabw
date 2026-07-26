@@ -90,7 +90,7 @@ class CartController extends Controller
                     $product = $item->productVariant->product;
                     if ($product->images && is_array($product->images)) {
                         $product->images = array_map(function ($image) {
-                            return str_starts_with($image, 'http') ? $image : asset('storage/' . $image);
+                            return str_starts_with($image, 'http') ? $image : \Illuminate\Support\Facades\Storage::url($image);
                         }, $product->images);
                     }
                 }

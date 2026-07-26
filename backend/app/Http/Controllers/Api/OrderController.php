@@ -28,7 +28,7 @@ class OrderController extends Controller
                             if (filter_var($path, FILTER_VALIDATE_URL)) {
                                 return $path;
                             }
-                            return asset('storage/' . ltrim($path, '/'));
+                            return \Illuminate\Support\Facades\Storage::url(ltrim($path, '/'));
                         }, $images);
                     } else {
                         $item->productVariant->product->images = [];

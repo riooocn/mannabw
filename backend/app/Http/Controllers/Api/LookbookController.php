@@ -20,7 +20,7 @@ class LookbookController extends Controller
                 if (is_array($campaign->images)) {
                     foreach ($campaign->images as $img) {
                         $mappedImg = [
-                            'image' => asset('storage/' . $img['image']),
+                            'image' => \Illuminate\Support\Facades\Storage::url($img['image']),
                             'size' => $img['size'] ?? 'medium',
                             'is_grayscale' => $img['is_grayscale'] ?? false,
                             'product_slug' => null,
@@ -40,7 +40,7 @@ class LookbookController extends Controller
                     'id' => $campaign->id,
                     'title' => $campaign->title,
                     'description' => $campaign->description,
-                    'background_image' => $campaign->background_image ? asset('storage/' . $campaign->background_image) : null,
+                    'background_image' => $campaign->background_image ? \Illuminate\Support\Facades\Storage::url($campaign->background_image) : null,
                     'images' => $mappedImages,
                 ];
             });

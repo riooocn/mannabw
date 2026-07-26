@@ -19,7 +19,7 @@ class ProductController extends Controller
         $products->transform(function ($product) {
             if ($product->images && is_array($product->images)) {
                 $product->images = array_map(function ($image) {
-                    return asset('storage/' . $image);
+                    return \Illuminate\Support\Facades\Storage::url($image);
                 }, $product->images);
             }
             return $product;
