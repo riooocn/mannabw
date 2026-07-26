@@ -39,7 +39,7 @@ export function LookbookGrid({ images }: LookbookGridProps) {
               onClick={() => img.product_slug && setSelectedProductSlug(img.product_slug)}
             >
                <div className={`w-full h-full transition-all duration-700 ease-out group-hover:scale-[1.02] ${img.is_grayscale ? 'grayscale group-hover:grayscale-0' : ''}`}>
-                  <ParallaxImage src={img.image} alt={`Lookbook ${index}`} className="w-full h-full border-none opacity-80 group-hover:opacity-100 transition-opacity" />
+                  <ParallaxImage src={img.image} alt={`Lookbook ${index}`} className="w-full h-full border-none" />
                </div>
                
                {/* Interactive Tag overlay (Hidden until hover) */}

@@ -28,15 +28,15 @@ export default async function LookbookPage() {
           <div className="relative px-4 md:px-16 py-32 flex flex-col items-center justify-center text-center border-b-4 border-primary min-h-[50vh] overflow-hidden bg-black text-white">
             {campaign.background_image && (
               <div 
-                className="absolute inset-0 opacity-30 pointer-events-none" 
+                className="absolute inset-0 pointer-events-none" 
                 style={{ 
                   backgroundImage: `url("${campaign.background_image}")`, 
                   backgroundSize: 'cover', 
                   backgroundPosition: 'center', 
-                  filter: 'grayscale(100%) contrast(150%)' 
                 }}
               />
             )}
+            <div className="absolute inset-0 bg-black/40 pointer-events-none" />
             
             <div className="relative z-10 flex flex-col items-center">
               <p className="font-inter font-bold tracking-[0.3em] uppercase text-sm mb-4 text-white/70">
