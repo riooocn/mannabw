@@ -2,6 +2,9 @@ import { AnimatedText } from "@/components/ui/animated-text";
 import { LookbookGrid, LookbookImage } from "@/components/lookbook/lookbook-grid";
 import { fetchApi } from "@/lib/api";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface LookbookCampaign {
   id: number;
   title: string;
