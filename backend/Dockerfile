@@ -44,6 +44,9 @@ RUN composer dump-autoload --optimize
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
+# Create storage symlink
+RUN php artisan storage:link
+
 # Setup Apache to listen on dynamic $PORT provided by Koyeb (Default 8000)
 ENV PORT=8000
 RUN sed -i "s/Listen 80/Listen \${PORT}/g" /etc/apache2/ports.conf
