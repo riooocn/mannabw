@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.3-apache
 
 # Install dependencies for Laravel and PostgreSQL (Supabase)
 RUN apt-get update && apt-get install -y \
