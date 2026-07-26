@@ -39,4 +39,19 @@ Route::get('/lookbook', [App\Http\Controllers\Api\LookbookController::class, 'in
 
 Route::get('/shipping/locations', [App\Http\Controllers\Api\ShippingController::class, 'locations']);
 
-// (Temporary setup routes removed for security)
+// Temporary setup routes for initial deployment
+Route::get('/setup-db-migrate', function() {
+    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true]);
+    return response()->json(['message' => 'Database migrated successfully', 'output' => \Illuminate\Support\Facades\Artisan::output()]);
+});
+Route::get('/setup-create-admin', function() {
+    $user = \App\Models\User::firstOrCreate(
+        ['email' => 'admin@mannabw.com'],
+        [
+            'name' => 'Super Admin',
+            'password' => bcrypt('password'),
+            'role' => 'admin'
+        ]
+    );
+    return response()->json(['message' => 'Admin created successfully', 'user' => $user]);
+});
